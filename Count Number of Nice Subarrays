@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int numberOfSubarrays(vector<int>& nums, int k) {
+
+
+       int n =(int)nums.size();
+ // Convert all odd numbers to 1 and even numbers to 0
+        for (int i = 0; i < n; i++) {
+            nums[i] = (nums[i] % 2 == 0) ? 0 : 1;
+        }
+
+       // change all odd characters to 1 and all even to 0
+        int count=0;
+        unordered_map<int,int>prevsum;
+        int sum=0;
+        for(int i=0;i<n;i++){
+            sum+=nums[i];
+            if(sum==k)
+            count++;
+            if(prevsum.find(sum-k)!=prevsum.end());
+            count+=prevsum[sum-k];
+            prevsum[sum]++;
+        }
+        return count;
+        
+     
+    }
+};

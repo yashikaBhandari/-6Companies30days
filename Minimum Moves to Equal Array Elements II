@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int minMoves2(vector<int>& nums) {
+       // either make all elements equal to center element or best approch add start and ending element of vector to make any no  n 
+       sort(nums.begin(),nums.end());
+       int start=0;
+       int end=nums.size()-1;
+       int count=0;
+       while(start<end){
+        count+=nums[end]-nums[start];
+        start++;
+        end--;
+       }
+       return count;
+    }
+};

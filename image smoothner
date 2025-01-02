@@ -1,0 +1,93 @@
+//approch 1 store directions of 9 neighbours to find it out while smoothening 
+ // adding to current i , j will give us i and j value we will add in sum class Solution {
+/*class Solution {
+public:
+    vector<vector<int>> directions{
+        {-1,-1}, {-1,0}, {-1,1},
+        {0,-1}, {0,0}, {0,1},
+        {1,-1}, {1,0}, {1,1}
+    };
+    
+    vector<vector<int>> imageSmoother(vector<vector<int>>& img) {
+        int m = img.size();
+        int n = img[0].size();
+        vector<vector<int>> result(m, vector<int>(n, 0));
+        
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                long long sumneigh = 0;
+                int countneigh = 0;
+
+                // Calculate sum and count of valid neighbors
+                for (auto& it : directions) {
+                    int i_ = i + it[0];
+                    int j_ = j + it[1];
+                    if (i_ >= 0 && i_ < m && j_ >= 0 && j_ < n) {
+                        sumneigh += img[i_][j_];
+                        countneigh++;
+                    }
+                }
+                
+                // Smooth the current cell
+                result[i][j] = sumneigh / countneigh;
+            }
+        }
+        
+        return result;
+    }
+};
+*/
+class Solution {
+public:
+vector<vector<int>> imageSmoother(vector<vector<int>>& img) {
+// space optimized solution  make only 1d array to store previous row elements rest and not updated can be asitis 
+// add bottom neighbours and right neighboutr as it is 
+// find prev row elements from temp array storing previous row elements 
+//find top corner element from prev variable 
+// find left. neighbour from temp arrray 
+
+//[0,0]--> store its value in jth index of it is i.e '0' for this [0,1] store its value at jth index i.e , '1'
+
+
+int m = img.size();
+int n = img[0].size();
+vector<int> temp(n);
+int prevcorner=0;
+
+for(int i=0;i<m;i++){
+    for(int j=0;j<n; j++){
+        int sum=0;
+        int count=0;
+        // bottom corner(i+1)th row also check should be valid 
+        if(i+1<m){
+            // add these [i+1][j-1] , [i+1][j] ,[i+1][j+1]
+            if(j-1 >=0){
+                sum+=img[i+1][j-1];
+                count++;
+            }
+            sum+=img[i+1][j-1];
+            count++;
+            if(j+1<n){
+                sum+=img[i+1][j+1];
+                count++;
+            }
+
+        }
+        // right element 
+        if(j+1<n){
+            sum+=img[i][j+1];
+            count++;
+        }
+        // just left 
+        //[i,j-1]
+        if(j-1 >= 0){
+            sum+temp[j-1];
+            count++;
+        }
+    }
+}
+
+// see notes 
+
+}
+};

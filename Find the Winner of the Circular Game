@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int findTheWinner(int n, int k) {
+        // using queue ad simulation 
+        // remove starting ke k-1 elements from the front of queue and push in backward 
+        // such that our front is kth element  pop that we want to start our game next from from the next to it 
+        queue<int> q;
+        for(int i=1;i<=n;i++){
+            q.push(i);
+        }
+        while(q.size()>1){
+            for(int count=1;count<=k-1;count++){
+                q.push(q.front());
+                q.pop();
+            }
+            q.pop();
+        }
+        return q.front();
+
+    }
+};
